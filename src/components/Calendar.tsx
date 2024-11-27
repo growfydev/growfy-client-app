@@ -33,6 +33,19 @@ function Calendario() {
     PINTEREST: '#BD081C',
   };
 
+  const providerMap: Record<string, number> = {
+    FACEBOOK: 1,
+    INSTAGRAM: 2,
+    TWITTER: 3,
+    PINTEREST: 4,
+  };
+
+  const typePostMap: Record<string, number> = {
+    text: 1,
+    image: 2,
+    message: 3,
+  };
+
   useEffect(() => {
     if (currentProfile?.id) {
       getAllPostProfile(currentProfile.id);
@@ -92,9 +105,22 @@ function Calendario() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const providerId = providerMap[formData.provider];
+    const typePostId = typePostMap[formData.typePost];
     const unixTimestamp = formData.unix ? dayjs(formData.unix).unix() : null;
+
+    if (!providerId || !typePostId) {
+      toast.error('Proveedor o Tipo de Publicación no válido.');
+      return;
+    }
+
     try {
-      await createPost(currentProfile.id, { ...formData, unix: unixTimestamp });
+      await createPost(currentProfile.id, {
+        content: formData.content,
+        provider: providerId,
+        typePost: typePostId,
+        unix: unixTimestamp,
+      });
       setModalIsOpen(false);
       setFormData({
         provider: '',
