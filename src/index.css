@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fc {
+  @apply font-sans;
+}
+
+.fc .fc-toolbar-title {
+  @apply text-xl font-semibold text-gray-800;
+}
+
+.fc .fc-button {
+  @apply bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition duration-200;
+}
+
+.fc .fc-button-primary {
+  @apply bg-black text-white border-black hover:bg-gray-800 hover:border-gray-800;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+  @apply bg-gray-800 border-gray-800;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  @apply border border-gray-200;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+  @apply border-gray-200;
+}
+
+.fc .fc-day-today {
+  @apply bg-gray-50;
+}
+
+.fc-event {
+  @apply cursor-pointer;
+}
+
+.fc-h-event {
+  @apply border-none rounded-lg bg-black;
+}
+
+.fc {
+  z-index: 0;
+}
